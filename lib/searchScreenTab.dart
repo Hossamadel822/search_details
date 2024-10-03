@@ -5,11 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:search/searchViewModel.dart';
 
 
+import 'Movie_model.dart';
 import 'movie_State.dart';
 import 'movie_detail_screen.dart';
 
 class Searchsceentab extends StatelessWidget {
   static const String routeName = 'search';
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +23,7 @@ class Searchsceentab extends StatelessWidget {
       child: BlocBuilder<Searchtabviewmodel, Searchstates>(
         builder: (context, state) {
           final viewmodel = BlocProvider.of<Searchtabviewmodel>(context);
+
 
           return Scaffold(
             backgroundColor: Colors.black,
@@ -88,7 +92,7 @@ class Searchsceentab extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => MovieDetailScreen(
-                                      movieId: movie.id,
+                                      movieId: movie.id!.toInt(),
                                     ),
                                   ),
                                 );

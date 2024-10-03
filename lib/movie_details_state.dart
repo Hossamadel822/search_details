@@ -1,29 +1,32 @@
-import 'Movie_model.dart';
+import 'DetailsResponse.dart';
+import 'SimDetResponse.dart';
 
+abstract class MovieDetailsStates {}
 
-abstract class MovieDetailsState  {
-  @override
-  List<Object?> get props => [];
+class MovieDetailsInitialState extends MovieDetailsStates {}
+
+class MovieDetailsLoadingState extends MovieDetailsStates {}
+
+class MovieDetailsSuccessState extends MovieDetailsStates {
+  final DetailsResponse details;
+
+  MovieDetailsSuccessState({required this.details});
 }
 
-class MovieDetailsInitial extends MovieDetailsState {}
-
-class MovieDetailsLoading extends MovieDetailsState {}
-
-class MovieDetailsLoaded extends MovieDetailsState {
-  final Movie movie;
-
-  MovieDetailsLoaded(this.movie);
-
-  @override
-  List<Object?> get props => [movie];
+class MovieDetailsErrorState extends MovieDetailsStates {
+  String errorMsg;
+  MovieDetailsErrorState(this.errorMsg);
 }
 
-class MovieDetailsError extends MovieDetailsState {
-  final String message;
+class MovieSimilarDetailsLoadingState extends MovieDetailsStates {}
 
-  MovieDetailsError(this.message);
+class MovieSimilarDetailsSuccessState extends MovieDetailsStates {
+  final SimilarDetailsResponse similarDetails;
 
-  @override
-  List<Object?> get props => [message];
+  MovieSimilarDetailsSuccessState({required this.similarDetails});
+}
+
+class MovieSimilarDetailsErrorState extends MovieDetailsStates {
+  String errorMsg;
+  MovieSimilarDetailsErrorState(this.errorMsg);
 }
